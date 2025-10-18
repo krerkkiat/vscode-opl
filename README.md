@@ -1,34 +1,16 @@
 # OPL Language Syntax Highlighting
 
-This extension provides OPL syntax highlighting. OPL is the language uses in IBM ILOG CPLEX Optimization Studio.
+This extension provides syntax highlighting and basic snippets for Optimization Programming Language (OPL). OPL is the programming language that is used in [IBM ILOG CPLEX Optimization Studio](https://www.ibm.com/products/ilog-cplex-optimization-studio).
 
 ## Features
 
-- Syntax highlighting for OPL language.
-- Basic snippets.
+- Syntax highlighting for the OPL language.
+- Basic snippets (`forall`, `exec`, `subj`).
 
-## Known Issues
+## Latest Changes (v0.1.0 - 2025-10-18)
 
----
-
-## Release Notes
-
-Collection of release notes.
-
-### 0.1.0 - 2025-10-18
-
-#### Added
+### Added
 
 - The full OPL grammar based on the IBM's specification. Contributed by [jonasrohw](https://github.com/krerkkiat/vscode-opl/pull/1)
 - Add some sort of an icon.
 - Add `.dat` file to list of files handled by this OPL language.
-
-### 0.0.2 - 2021-12-01
-
-- Add snippets for `forall`, `subject to`, `execute`.
-- Add more keywords.
-
-### 0.0.1 - 2020-03-01
-
-Initial release. This provides basic syntax highlighting with keyword like `for`, `forall`, `sum`, `minimize`, etc.
-
