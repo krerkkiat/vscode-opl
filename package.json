@@ -2,7 +2,7 @@
     "name": "opl",
     "displayName": "OPL",
     "description": "OPL Language Syntax Highlighting",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "author": {
         "name": "Krerkkiat Chusap",
         "email": "contact@kchusap.com"
@@ -10,9 +10,9 @@
     "publisher": "kchusap",
     "icon": "icon.png",
     "repository": {
-		"type": "git",
-		"url": "https://github.com/krerkkiat/vscode-opl.git"
-	},
+        "type": "git",
+        "url": "https://github.com/krerkkiat/vscode-opl.git"
+    },
     "engines": {
         "vscode": "^1.39.0"
     },
@@ -21,17 +21,27 @@
         "Snippets"
     ],
     "contributes": {
-        "languages": [{
-            "id": "opl",
-            "aliases": ["OPL", "opl"],
-            "extensions": [".mod", ".dat"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "opl",
-            "scopeName": "source.opl",
-            "path": "./syntaxes/opl.tmLanguage.json"
-        }],
+        "languages": [
+            {
+                "id": "opl",
+                "aliases": [
+                    "OPL",
+                    "opl"
+                ],
+                "extensions": [
+                    ".mod",
+                    ".dat"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "opl",
+                "scopeName": "source.opl",
+                "path": "./syntaxes/opl.tmLanguage.json"
+            }
+        ],
         "snippets": [
             {
                 "language": "opl",
