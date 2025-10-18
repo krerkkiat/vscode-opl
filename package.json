@@ -8,6 +8,7 @@
         "email": "contact@kchusap.com"
     },
     "publisher": "kchusap",
+    "icon": "icon.png",
     "repository": {
 		"type": "git",
 		"url": "https://github.com/krerkkiat/vscode-opl.git"
@@ -23,7 +24,7 @@
         "languages": [{
             "id": "opl",
             "aliases": ["OPL", "opl"],
-            "extensions": [".mod"],
+            "extensions": [".mod", ".dat"],
             "configuration": "./language-configuration.json"
         }],
         "grammars": [{
