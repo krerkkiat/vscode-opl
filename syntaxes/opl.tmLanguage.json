@@ -1,68 +1,283 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "OPL",
-	"fileTypes": ["mod"],
+	"scopeName": "source.opl",
+	"fileTypes": ["mod", "dat"],
 	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#comment"
-		}
+	  { "include": "#comment" },
+	  { "include": "#strings" },
+	  { "include": "#numbers" },
+	  { "include": "#keywords" },
+	  { "include": "#types" },
+	  { "include": "#operators" },
+	  { "include": "#aggregates" },
+	  { "include": "#functions" },
+	  { "include": "#punctuation" },
+	  { "include": "#constants" },
+	  { "include": "#io" },
+	  { "include": "#identifiers" }
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.opl",
-				"match": "\\b(if|forall|sum)\\b"
-			},{
-				"name": "keyword.other.opl",
-				"match": "\\b(assert|in|minimize|maximize|execute|dexpr)\\b"
-			},{
-				"name": "keyword.operator.opl",
-				"match": "\\b(<|<=|>|>=)\\b"
-			},{
-				"name": "storage.type.primitive.opl",
-				"match": "\\b(int\\+|int|float|boolean|pwlFunction|stepFunction)\\b"
-			},{
-				"name": "storage.type.opl",
-				"match": "\\b(dvar|range|tuple)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.opl",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.opl",
-					"match": "\\\\."
-				}
-			]
-		},
-		"comment": {
-			"name": "comment.opl",
-			"patterns": [
-				{
-					"include": "#comment-block"
-				},
-				{
-					"include": "#comment-line"
-				}
-			]
-		},
-		"comment-block": {
+	  "comment": {
+		"name": "comment.opl",
+		"patterns": [
+		  {
 			"name": "comment.block.opl",
 			"begin": "/\\*",
 			"end": "\\*/"
-		},
-		"comment-line": {
+		  },
+		  {
 			"name": "comment.line.opl",
-			"match": "(//).*$\\n?"
-		}
-	},
-	"scopeName": "source.opl"
-}
+			"match": "//.*$"
+		  }
+		]
+	  },
+	  "strings": {
+		"name": "string.quoted.double.opl",
+		"begin": "\"",
+		"end": "\"",
+		"patterns": [
+		  {
+			"name": "constant.character.escape.opl",
+			"match": "\\\\."
+		  }
+		]
+	  },
+	  "numbers": {
+		"patterns": [
+		  {
+			"name": "constant.numeric.integer.opl",
+			"match": "\\b-?\\d+\\b"
+		  },
+		  {
+			"name": "constant.numeric.float.opl",
+			"match": "\\b-?\\d+\\.\\d+([eE][+-]?\\d+)?\\b"
+		  }
+		]
+	  },
+	  "types": {
+		"patterns": [
+		  {
+			"name": "support.type.primitive.opl",
+			"match": "\\b(?:int|float|boolean|string|range|constraint)\\b"
+		  },
+		  {
+			"name": "support.type.domain.opl",
+			"match": "\\b(?:int\\+|float\\+)\\b"
+		  },
+		  {
+			"name": "support.type.collection.opl",
+			"match": "\\b(?:setof|tuple|struct)\\b"
+		  },
+		  {
+			"name": "support.type.scheduling.opl",
+			"match": "\\b(?:interval|sequence|cumulFunction|stateFunction|stepFunction|pwlFunction)\\b"
+		  }
+		]
+	  },
+	  "keywords": {
+		"patterns": [
+		  {
+			"name": "keyword.declaration.variable.opl",
+			"match": "\\b(?:dvar|dexpr|var)\\b"
+		  },
+		  {
+			"name": "keyword.control.conditional.opl",
+			"match": "\\b(?:if|else)\\b"
+		  },
+		  {
+			"name": "keyword.control.loop.opl",
+			"match": "\\b(?:forall|all)\\b"
+		  },
+		  {
+			"name": "keyword.other.constraint.opl",
+			"match": "\\b(?:constraints|subject\\s+to|assert)\\b"
+		  },
+		  {
+			"name": "keyword.other.objective.opl",
+			"match": "\\b(?:minimize|maximize)\\b"
+		  },
+		  {
+			"name": "keyword.other.directive.opl",
+			"match": "\\b(?:include|using|template)\\b"
+		  },
+		  {
+			"name": "keyword.other.execution.opl",
+			"match": "\\b(?:execute|main|prepare|invoke)\\b"
+		  },
+		  {
+			"name": "keyword.other.modifier.opl",
+			"match": "\\b(?:ordered|sorted|reversed|optional|key|with|from|to)\\b"
+		  },
+		  {
+			"name": "keyword.other.scheduling.opl",
+			"match": "\\b(?:intensity|size|types|stepwise)\\b"
+		  },
+		  {
+			"name": "keyword.other.engine.opl",
+			"match": "\\b(?:CP|CPLEX)\\b"
+		  },
+		  {
+			"name": "keyword.other.piecewise.opl",
+			"match": "\\b(?:piecewise)\\b"
+		  }
+		]
+	  },
+	  "operators": {
+		"patterns": [
+		  {
+			"name": "keyword.operator.comparison.opl",
+			"match": "(==|!=|<=|>=|<|>)"
+		  },
+		  {
+			"name": "keyword.operator.assignment.opl",
+			"match": "="
+		  },
+		  {
+			"name": "keyword.operator.arithmetic.opl",
+			"match": "(\\+|-|\\*|/|\\^|%)"
+		  },
+		  {
+			"name": "keyword.operator.logical.opl",
+			"match": "(&&|\\|\\||!|=>)"
+		  },
+		  {
+			"name": "keyword.operator.range.opl",
+			"match": "\\.\\."
+		  },
+		  {
+			"name": "keyword.operator.mapping.opl",
+			"match": "->"
+		  },
+		  {
+			"name": "keyword.operator.ternary.opl",
+			"match": "\\?"
+		  },
+		  {
+			"name": "keyword.operator.word.arithmetic.opl",
+			"match": "\\b(?:div|mod)\\b"
+		  },
+		  {
+			"name": "keyword.operator.word.set.opl",
+			"match": "\\b(?:in|not\\s+in|inter|union|diff|symdiff)\\b"
+		  }
+		]
+	  },
+	  "aggregates": {
+		"patterns": [
+		  {
+			"name": "support.function.aggregate.opl",
+			"match": "\\b(?:sum|min|max|prod|and|or|union|inter|all)\\b"
+		  }
+		]
+	  },
+	  "functions": {
+		"patterns": [
+		  {
+			"name": "support.function.builtin.opl",
+			"match": "\\b[a-zA-Z_][a-zA-Z0-9_]*(?=\\s*\\()"
+		  }
+		]
+	  },
+	  "punctuation": {
+		"patterns": [
+		  {
+			"name": "punctuation.terminator.statement.opl",
+			"match": ";"
+		  },
+		  {
+			"name": "punctuation.separator.comma.opl",
+			"match": ","
+		  },
+		  {
+			"name": "punctuation.accessor.dot.opl",
+			"match": "\\."
+		  },
+		  {
+			"name": "punctuation.definition.array.begin.opl",
+			"match": "\\["
+		  },
+		  {
+			"name": "punctuation.definition.array.end.opl",
+			"match": "\\]"
+		  },
+		  {
+			"name": "punctuation.definition.block.begin.opl",
+			"match": "\\{"
+		  },
+		  {
+			"name": "punctuation.definition.block.end.opl",
+			"match": "\\}"
+		  },
+		  {
+			"name": "punctuation.definition.parameters.begin.opl",
+			"match": "\\("
+		  },
+		  {
+			"name": "punctuation.definition.parameters.end.opl",
+			"match": "\\)"
+		  },
+		  {
+			"name": "punctuation.definition.tuple.begin.opl",
+			"match": "<"
+		  },
+		  {
+			"name": "punctuation.definition.tuple.end.opl",
+			"match": ">"
+		  },
+		  {
+			"name": "punctuation.separator.colon.opl",
+			"match": ":"
+		  },
+		  {
+			"name": "punctuation.definition.ellipsis.opl",
+			"match": "\\.\\.\\."
+		  }
+		]
+	  },
+	  "constants": {
+		"patterns": [
+		  {
+			"name": "constant.language.boolean.true.opl",
+			"match": "\\btrue\\b"
+		  },
+		  {
+			"name": "constant.language.boolean.false.opl",
+			"match": "\\bfalse\\b"
+		  },
+		  {
+			"name": "constant.language.numeric.infinity.opl",
+			"match": "\\binfinity\\b"
+		  },
+		  {
+			"name": "constant.language.numeric.maxint.opl",
+			"match": "\\bmaxint\\b"
+		  }
+		]
+	  },
+	  "io": {
+		"patterns": [
+		  {
+			"name": "support.class.database.opl",
+			"match": "\\b(?:DBConnection|DBRead|DBExecute|DBUpdate)\\b"
+		  },
+		  {
+			"name": "support.class.spreadsheet.opl",
+			"match": "\\b(?:SheetConnection|SheetRead|SheetWrite)\\b"
+		  }
+		]
+	  },
+	  "identifiers": {
+		"patterns": [
+		  {
+			"name": "variable.other.opl",
+			"match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+		  },
+		  {
+			"name": "meta.placeholder.opl",
+			"match": "\\((?:identifier|string-literal|integer-literal|float-literal|boolean-literal|execute-block)\\)"
+		  }
+		]
+	  }
+	}
+  }
