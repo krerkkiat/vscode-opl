@@ -4,12 +4,10 @@ This extension provides OPL syntax highlighting. OPL is the language uses in IBM
 
 ## Features
 
-- Basic syntax highlighting for OPL language.
+- Syntax highlighting for OPL language.
 - Basic snippets.
 
 ## Known Issues
-
-- Lack of other keywords.
 
 ---
 
